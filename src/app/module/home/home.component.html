@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row" style="margin-top: 10px">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="text-align: center">
+      <div style="border: 3px solid #ccc;padding: 10px;border-radius: 100%;margin:auto;line-height: 3;font-size: 24px;width: 100px;height: 100px;">{{time}}</div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-6" style="display: table;">
+      <div style="display: table-cell;vertical-align: middle;text-align: center;height : 150px;background: #d4d4d4;width: 100%;color: red;border: 1px solid #ccc;font-weight: bold;font-size: 45px;">
+        {{tiger}}
+      </div>
+    </div>
+    <div class="col-md-6" style="display: table;">
+        <div style="display: table-cell;vertical-align: middle;text-align: center;height : 150px;background: #d4d4d4;width: 100%;color: blue;border: 1px solid #ccc;font-weight: bold;font-size: 45px;">
+          {{dragon}}
+        </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 10px">
+    <div class="col-md-4"></div>
+    <div class="col-md-4" style="text-align: center">
+      <button class="btn btn-success" (click)="begin()"> Bắt đầu </button>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <input type="number" [(ngModel)]="hireTiger" style="text-align: right;"/>
+      <button class="btn btn-danger" (click)="beginHire('tiger',10)">10K</button>
+      <button class="btn btn-success" (click)="beginHire('tiger',25)">25K</button>
+      <button class="btn btn-warning" (click)="beginHire('tiger',50)"> 50K</button>
+      <button class="btn btn-default" (click)="beginHire('tiger',100)">100K</button>
+      <button class="btn btn-default" (click)="resetHire('tiger')">CLEAR</button>
+    </div>
+    <div class="col-md-6">
+      <div class="pull-right">
+        <input type="number" [(ngModel)]="hireDragon" style="text-align: right;"/>
+        <button class="btn btn-danger" (click)="beginHire('dragon',10)">10K</button>
+        <button class="btn btn-success" (click)="beginHire('dragon',25)">25K</button>
+        <button class="btn btn-warning" (click)="beginHire('dragon',50)"> 50K</button>
+        <button class="btn btn-default" (click)="beginHire('dragon',100)">100K</button>
+        <button class="btn btn-default" (click)="resetHire('dragon')">CLEAR</button>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 10px">
+    <div class="col-md-3"></div>
+    <div class="col-md-6" style="text-align: center">
+        <h1>Tiền lúc đầu: {{currentTotal | number}}</h1>
+        <h1>Tiền hiện tại: {{currentTotal | number}}</h1>
+        <h1>
+          Thắng/Thua: 
+          <span *ngIf="(currentTotal - total > 0)" style="color: green;font-weight: bold">{{currentTotal - total | number}}</span>
+          <span *ngIf="(currentTotal - total < 0)" style="color: red;font-weight: bold">{{currentTotal - total | number}}</span>
+          <span *ngIf="(currentTotal - total == 0)" style="color: gray;font-weight: bold">{{currentTotal - total | number}}</span>
+        </h1>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+  <div class="row" style="margin-top: 10px">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Win</th>
+          <th>WL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data">
+          <td>{{i.stt}}</td>
+          <td>{{i.win}}</td>
+          <td>
+            <span *ngIf="(i.wl > 0)" style="color: green;font-weight: bold">{{i.wl | number}}</span>
+            <span *ngIf="(i.wl < 0)" style="color: red;font-weight: bold">{{i.wl | number}}</span>
+            <span *ngIf="(i.wl == 0)" style="color: gray;font-weight: bold">{{i.wl | number}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
